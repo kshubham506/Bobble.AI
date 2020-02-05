@@ -5,9 +5,32 @@ By : kshubham506@gmail.com
 """
 
 import sys
-import itertools
 import csv
 
+
+
+def createPermutations(arr): 
+    print("\nOutput Strings :")
+    n = len(arr) 
+    indices = [0 for i in range(n)] 
+    while (1):  
+        for i in range(n): 
+            print(arr[i][indices[i]], end = "") 
+        print() 
+        next = n - 1
+        while (next >= 0 and 
+              (indices[next] + 1 >= len(arr[next]))): 
+            next-=1
+            
+        if (next < 0): 
+            return
+  
+        indices[next] += 1
+
+        for i in range(next + 1, n): 
+            indices[i] = 0
+            
+            
 
 file_name=sys.argv[1]
 #file_name="file2.csv"
@@ -23,12 +46,8 @@ with open(file_name, 'r') as file:
         print(", ".join((map(str,row))))
         a.append(row)
 
-print("\nOutput Strings :")
-
-#using itertools to print all the permutations
-permutedStrings=["".join(x) for x in itertools.product(*a)]
-
-print(", ".join((map(str,permutedStrings))))
+#call the create permutation function
+createPermutations(a) 
 
 
 
