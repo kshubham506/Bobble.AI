@@ -23,10 +23,10 @@ You can modify it.
 
 To run first go inside the folder word suggestion then run in terminal :  ```python main.py file2.csv help```
 
-This program uses the SequenceMatcher library to match the incorrectword with all the words in the file and show the best suggestion.
+This program uses the SequenceMatcher library(from difflib) to match the incorrectword with all the words in the file and show the best suggestion.
 
 **Sample Image**
-![wordsuggestoion](https://github.com/kshubham506/Bobble.AI/blob/master/readmeimages/permutation.png)
+![wordsuggestoion](https://github.com/kshubham506/Bobble.AI/blob/master/readmeimages/word_suggestion.png)
 
 
 # CharacterTree
