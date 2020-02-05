@@ -34,11 +34,9 @@ This is a C++ program(main.cpp)
 Also file2.csv is the csv file having the words separated by comma.
 You can modify it.
 
-To run first go inside the folder CharacterTree then run in terminal :  ```g++ -o main main.cpp```
-Then for:
-
-
-This program uses the SequenceMatcher library to match the incorrectword with all the words in the file and show the best suggestion.
+To run first go inside the folder CharacterTree then in terminal type :  ```g++ -o main main.cpp``` to compile.
+Then to serialize : ```./main create file2.csv output.bin```
+and to load : ```./main load output.bin```
 
 **Sample Image**
-![wordsuggestoion](https://github.com/kshubham506/Bobble.AI/blob/master/readmeimages/permutation.png)
+![wordsuggestoion](https://github.com/kshubham506/Bobble.AI/blob/master/readmeimages/charactertree.png)
