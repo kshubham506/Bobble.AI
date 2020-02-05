@@ -47,7 +47,7 @@
         }
     }
 
-    void serialize(Node *root, ostringstream& OSS) 
+    void serialize(Node *root, fstream &OSS) 
     { 
         if (!root) {
             OSS << '#' << MARKER; 
@@ -60,12 +60,12 @@
         return;
     } 
     
-    Node * deSerialize(istringstream& ISS) 
+    Node * deSerialize(fstream &ISS) 
     { 
-        string nodeHolder; // Holds either # or a number, in string form
-        ISS >> nodeHolder; // Take first string (that isn't ourToken) from stream
-        // and put it into nodeHolder;
-        if (!nodeHolder.compare("#")) return nullptr; // If nodeHolder is "#" then a node doesn't exist there
+        string nodeHolder; 
+        ISS >> nodeHolder; 
+        if (!nodeHolder.compare("#")) 
+            return nullptr; 
         Node* newnode = new Node(nodeHolder);
         newnode->left = deSerialize(ISS);
         newnode->right = deSerialize(ISS);
@@ -98,14 +98,13 @@
     int main(int argc, char **argv) 
     { 
     
-        if(1 || strcmp(argv[1],"create")==0){
-            
-            // string csvFile=argv[2];
-            // string outputFile=argv[3];
-            string csvFile="file2.csv";
-            string outputFile="abc.txt";
+        if(strcmp(argv[1],"create")==0)  {
+            string csvFile=argv[2];
+            string outputFile=argv[3];
+            // string csvFile="file2.csv";
+            // string outputFile="abc.dat";
 
-            cout<<"Reading CSv File :"<<csvFile<<" and serializing in :"<<outputFile;
+            cout<<"\nReading CSV File :"<<csvFile<<" and serializing in :"<<outputFile;
 
             Node *root=NULL;
 
@@ -133,27 +132,32 @@
                 }
             }
 
-
-            ostringstream  f("abc.txt",ios::out);
-            serialize(root, f); 
-
-            cout<<"\nContents of the File \n"; 
-            printLevelOrder(root);
+            //for serializing the tree into file
+            fstream file1;
+            file1.open(outputFile, ios::out);
+            serialize(root, file1); 
+            file1.close();
 
         
             cout<<"\nSerialized in "<<outputFile<<"\n";
 
         }
-        else if(strcmp(argv[1],"load")==0){
+        else if( strcmp(argv[1],"load")==0){
         
+            
             string readFile=argv[2];
+            // string readFile="abc.txt";
 
-            istringstream inpf(readFile,ios::binary|ios::in);
-            Node *root1=deSerialize(inpf);
+            fstream file2;
+            file2.open(readFile,ios::in);
+            Node *root1=deSerialize(file2);
 
             cout<<"\nContents of the File \n"; 
             printLevelOrder(root1); 
         
+        }
+        else{
+            cout<<"\nInvalid Command Line Inputs , Check Again";
         }
     
         return 0; 
