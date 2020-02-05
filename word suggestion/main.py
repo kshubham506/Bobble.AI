@@ -39,7 +39,7 @@ for i  in range(rangeTill):
     topsuggestions.append(suggestions[i][0])
 
 
-print("\nTop Suggestions : ")
+print("\nTop Suggestions :")
 print(", ".join((map(str,topsuggestions))))
     
     
